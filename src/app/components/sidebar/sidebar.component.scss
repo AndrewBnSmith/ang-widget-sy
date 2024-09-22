@@ -1,0 +1,90 @@
+/* Sidebar Container */
+.side-nav {
+    position: relative;
+    height: 100vh;
+    padding: 10px;
+    transition: width 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+    width: 155px;
+  
+    &.collapsed {
+      width: 50px;
+    }
+  }
+  
+  /* Title Section */
+  .expanded-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+  
+    .expand-button {
+      border: none;
+      background: none;
+      cursor: pointer;
+  
+      &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        padding: 2px;
+        border-radius: 5px;
+      }
+    }
+  }
+  
+  /* Navigation Links */
+  .side-nav a {
+    color: black; /* Set the text color to black */
+    text-decoration: none; /* Remove the underline */
+  }
+  
+  /* Navigation List */
+  .side-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      background: #ccc;
+      margin: 10px 0;
+    }
+  }
+  
+  /* Navigation Items */
+  .side-nav li {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.02);
+      background-color: #90AEAD;
+    }
+  
+    &.active {
+      background-color: #90AEAD;
+      color: white;
+    }
+  
+    img {
+      margin-right: 10px;
+    }
+  
+    &:last-child {
+      order: 2;
+    }
+  }

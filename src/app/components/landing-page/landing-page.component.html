@@ -1,0 +1,50 @@
+<nav>
+    <div class="title">
+      <img src="assets/widget.svg" alt="Widget Icon" class="title-icon" />
+      <h1>Widget Sync</h1>
+    </div>
+    <div class="nav-links">
+      <a routerLink="/product">Product</a>
+      <a routerLink="/widgets">Widgets</a>
+      <a routerLink="/solutions">Solutions</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/pricing">Pricing</a>
+      <a routerLink="/login">Go to Login</a>
+      <a routerLink="/">Go back to landing</a>
+    </div>
+    <button class="login-button" (click)="handleLogin($event)">
+      Login
+    </button>
+  </nav>
+  <div class="content-container">
+    <div class="left-content">
+      <h1 class="big-title">Welcome to Widget Sync!</h1>
+      <p class="site-description">Our site provides the best widgets in the market. Explore our products and solutions to find the perfect widget for you.</p>
+      <p class="site-description">Our site provides the best widgets in the market. Explore our products and solutions to find the perfect widget for you.</p>
+      <button class="blue-button" (click)="navigateToSignup()">Sign up</button>
+      <button class="blue-button" (click)="navigateToWidgets()">Explore Widgets</button>
+    </div>
+    <div class="right-content">
+      <div class="image-container">
+        <img [src]="randomImage" alt="Landing" />
+      </div>
+    </div>
+  </div>
+  <div class="cards-container" #cardsContainer>
+    <div class="card">
+      <img src="assets/tasklist.png" alt="Task List" />
+    </div>
+    <div class="card">
+      <img src="assets/mycalendar.png" alt="Task List" />
+    </div>
+    <div class="card">
+      <img src="assets/groceryList.png" alt="Task List" />
+    </div>
+    <div class="card">
+      <img src="assets/tasklist.png" alt="Task List" />
+    </div>
+    <div class="card">
+      <img src="assets/mycalendar.png" alt="Task List" />
+    </div>
+  </div>
+  <app-footer></app-footer>

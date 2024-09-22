@@ -1,0 +1,42 @@
+<div class="side-nav" [class.collapsed]="isCollapsed">
+    <div *ngIf="isCollapsed" class="collapsed-title">
+      <img class="icon" src="assets/drawIcons/main-logo.svg" alt="Widget Icon" (click)="toggleCollapse()" />
+    </div>
+    <div *ngIf="!isCollapsed" class="expanded-title">
+      <img class="icon" src="assets/drawIcons/main-logo.svg" alt="Main Logo" />
+      <h1>Calendro</h1>
+      <img class="expand-button" src="assets/drawIcons/left-arrow.svg" alt="Collapse" (click)="toggleCollapse()" />
+    </div>
+    <ul>
+      <li [class.active]="activeTab === 'dashboard'" (click)="setActiveTab('dashboard')">
+        <a routerLink="/dashboard">
+          <div class="nav-item">
+            <img class="icon" src="assets/icon/dashboard.svg" alt="Dashboard" />
+            <span *ngIf="!isCollapsed">Dashboard</span>
+          </div>
+        </a>
+      </li>
+      <li *ngFor="let widget of widgets" [class.active]="activeTab === widget.route" (click)="setActiveTab(widget.route)">
+        <a [routerLink]="['/', widget.route]">
+          <div class="nav-item">
+            <img class="icon" [src]="'assets/drawIcons/' + widget.icon + '.svg'" [alt]="widget.title" />
+            <span *ngIf="!isCollapsed">{{ widget.title }}</span>
+          </div>
+        </a>
+      </li>
+      <li *ngIf="!isCollapsed"><hr /></li>
+      <li>
+        <div class="nav-item" (click)="toggleSlider()">
+          <img class="icon" src="assets/drawIcons/add-widget.svg" alt="Add widget" />
+          <span *ngIf="!isCollapsed">Add widget</span>
+        </div>
+      </li>
+      <li>
+        <div class="nav-item" (click)="toggleEditing.emit()">
+          <img class="icon" src="assets/edit-card.svg" alt="Edit layout" />
+          <span *ngIf="!isCollapsed">Edit layout</span>
+        </div>
+      </li>
+    </ul>
+    <!-- <app-slider *ngIf="isSliderOpen" (addWidget)="handleNewWidget($event)"></app-slider> -->
+  </div>

@@ -1,0 +1,25 @@
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sidebar {
+    flex: 1;
+    max-width: 200px; /* Adjust as needed */
+  }
+  
+  .dashboard-content {
+    flex: 2;
+    padding: 0 20px; /* Adjust as needed */
+  }
+  
+  .friends-list {
+    flex: 1;
+    max-width: 200px; /* Adjust as needed */
+  }
+  
+  .widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust as needed */
+  }
