@@ -1,0 +1,46 @@
+.calendar-detail-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .calendar-detail-container h3 {
+    margin-top: 0;
+  }
+  
+  .calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 10px;
+  }
+  
+  .calendar-day {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+  }
+  
+  .calendar-day .date {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .calendar-day ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .calendar-day li {
+    padding: 2px 0;
+  }

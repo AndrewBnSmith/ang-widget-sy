@@ -10,18 +10,16 @@ interface Task {
 }
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'app-calendar-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './calendar-component.component.html', // Ensure this path is correct
-  styleUrls: ['./calendar-component.component.scss'] // Ensure this path is correct
+  templateUrl: './calendar-dashboard.component.html',
+  styleUrls: ['./calendar-dashboard.component.scss']
 })
-export class CalendarComponent {
+export class CalendarDashboardComponent {
   tasks: Task[] = [];
   currentMonth: Date = new Date();
   daysInMonth: number[] = [];
-  selectedTasks: Task[] = [];
-  selectedDay: number | null = null; // Add property to track the selected day
 
   constructor(private taskService: TaskService) {
     this.taskService.tasks$.subscribe((tasks: Task[]) => this.tasks = tasks);
@@ -41,12 +39,23 @@ export class CalendarComponent {
     return this.tasks.filter(task => task.date === dateString);
   }
 
-  onDayClick(date: number): void {
-    this.selectedDay = date; // Set the selected day
-    this.selectedTasks = this.getTasksForDate(date);
+  previousMonth(): void {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() - 1));
+    this.generateCalendar();
   }
 
-  backToCalendar(): void {
-    this.selectedDay = null; // Reset the selected day to go back to the calendar view
+  nextMonth(): void {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() + 1));
+    this.generateCalendar();
+  }
+
+  previousYear(): void {
+    this.currentMonth = new Date(this.currentMonth.setFullYear(this.currentMonth.getFullYear() - 1));
+    this.generateCalendar();
+  }
+
+  nextYear(): void {
+    this.currentMonth = new Date(this.currentMonth.setFullYear(this.currentMonth.getFullYear() + 1));
+    this.generateCalendar();
   }
 }

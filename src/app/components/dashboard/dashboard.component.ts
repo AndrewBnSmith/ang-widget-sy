@@ -4,9 +4,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FriendsListComponent } from '../friends-list/friends-list.component';
 import { WidgetComponent } from '../widget/widget.component';
 import { TaskDashboardComponent } from '../widget-dashboards/task-dashboard/task-dashboard.component';
-import { CalendarComponent } from '../widgets/calendar-component/calendar-component.component';
+import { CalendarDashboardComponent } from '../widget-dashboards/calendar-dashboard/calendar-dashboard.component';
 import { MyTasksComponent } from '../widgets/my-tasks/my-tasks.component';
-
+import { CalendarComponent } from '../widgets/calendar-component/calendar-component.component';
 
 interface Widget {
   id: number;
@@ -25,7 +25,8 @@ interface Widget {
     WidgetComponent,
     MyTasksComponent,
     CalendarComponent,
-    TaskDashboardComponent // Add TaskDetailComponent to imports
+    TaskDashboardComponent, 
+    CalendarDashboardComponent 
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']

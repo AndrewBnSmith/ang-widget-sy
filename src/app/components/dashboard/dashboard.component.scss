@@ -51,11 +51,11 @@
   }
   
   .size-selector {
-    margin-top: 10px;
+    margin-bottom: 10px; /* Adjust margin as needed */
     display: flex;
     justify-content: space-around;
     position: absolute; 
-    bottom: 10px; 
+    top: 10px; /* Move to the top */
     left: 10px; 
     right: 10px; 
     background: rgba(255, 255, 255, 0.8); 

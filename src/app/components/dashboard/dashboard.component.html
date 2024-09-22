@@ -1,10 +1,10 @@
 <div class="dashboard-container">
     <app-sidebar class="sidebar"></app-sidebar>
     <div class="dashboard-content">
-      <ng-container *ngIf="!detailedView; else taskDashboard">
+      <ng-container *ngIf="!detailedView; else detailedViewTemplate">
         <div class="widgets">
           <ng-container *ngFor="let widget of widgets; let i = index">
-            <div *ngIf="placeholderIndex === i" class="widget-placeholder" [ngClass]="draggedIndex !== null ? widgets[draggedIndex]?.size : ''"></div>
+            <div *ngIf="placeholderIndex === i" class="widget-placeholder" [ngClass]="draggedIndex !== null ? widgets[draggedIndex].size : ''"></div>
             <div [ngClass]="widget.size + ' widget-container'" 
                  class="widget-container" 
                  draggable="true" 
@@ -12,13 +12,6 @@
                  (dragover)="onDragOver($event, i)" 
                  (dragleave)="onDragLeave($event)" 
                  (drop)="onDrop($event, i)">
-              <ng-container [ngSwitch]="widget.name">
-                <app-widget *ngSwitchCase="'Widget 1'" [widget]="widget"></app-widget>
-                <app-widget *ngSwitchCase="'Widget 2'" [widget]="widget"></app-widget>
-                <app-widget *ngSwitchCase="'Widget 3'" [widget]="widget"></app-widget>
-                <app-my-tasks *ngSwitchCase="'My Tasks'"></app-my-tasks>
-                <app-calendar *ngSwitchCase="'Calendar'"></app-calendar>
-              </ng-container>
               <div class="size-selector">
                 <label>
                   <input type="radio" name="size-{{widget.id}}" value="small" (change)="changeSize(widget, 'small')" [checked]="widget.size === 'small'" />
@@ -32,15 +25,25 @@
                   <input type="radio" name="size-{{widget.id}}" value="large" (change)="changeSize(widget, 'large')" [checked]="widget.size === 'large'" />
                   Large
                 </label>
-                <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks'">Enlarge</button> <!-- Add enlarge button -->
+                <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> <!-- Add enlarge button -->
               </div>
+              <ng-container [ngSwitch]="widget.name">
+                <app-widget *ngSwitchCase="'Widget 1'" [widget]="widget"></app-widget>
+                <app-widget *ngSwitchCase="'Widget 2'" [widget]="widget"></app-widget>
+                <app-widget *ngSwitchCase="'Widget 3'" [widget]="widget"></app-widget>
+                <app-my-tasks *ngSwitchCase="'My Tasks'"></app-my-tasks>
+                <app-calendar *ngSwitchCase="'Calendar'"></app-calendar>
+              </ng-container>
             </div>
           </ng-container>
-          <div *ngIf="placeholderIndex === widgets.length" class="widget-placeholder" [ngClass]="draggedIndex !== null ? widgets[draggedIndex]?.size : ''"></div>
+          <div *ngIf="placeholderIndex === widgets.length" class="widget-placeholder" [ngClass]="draggedIndex !== null ? widgets[draggedIndex].size : ''"></div>
         </div>
       </ng-container>
-      <ng-template #taskDashboard>
-        <app-task-dashboard></app-task-dashboard>
+      <ng-template #detailedViewTemplate>
+        <ng-container [ngSwitch]="detailedView">
+          <app-task-dashboard *ngSwitchCase="'My Tasks'"></app-task-dashboard>
+          <app-calendar-dashboard *ngSwitchCase="'Calendar'"></app-calendar-dashboard>
+        </ng-container>
         <button (click)="closeDetailedView()">Back to Dashboard</button>
       </ng-template>
     </div>

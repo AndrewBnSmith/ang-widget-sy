@@ -5,39 +5,46 @@ interface Task {
   id: number;
   title: string;
   completed: boolean;
-  date: string; // Add date property to tasks
+  date: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private tasksSubject = new BehaviorSubject<Task[]>([
-    { id: 1, title: 'Task 1', completed: false, date: '2023-10-01' },
-    { id: 2, title: 'Task 2', completed: true, date: '2023-10-02' },
-    { id: 3, title: 'Task 3', completed: false, date: '2023-10-03' },
-  ]);
-
+  private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
 
-  getTasks(): Task[] {
-    return this.tasksSubject.value;
-  }
+  constructor() {}
 
-  addTask(task: Task): void {
-    const tasks = this.tasksSubject.value;
-    this.tasksSubject.next([...tasks, task]);
+  toggleTaskCompletion(taskId: number): void {
+    const tasks = this.tasksSubject.getValue();
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    if (taskIndex !== -1) {
+      tasks[taskIndex].completed = !tasks[taskIndex].completed;
+      this.tasksSubject.next(tasks);
+    }
   }
 
   deleteTask(taskId: number): void {
-    const tasks = this.tasksSubject.value.filter(task => task.id !== taskId);
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.filter(task => task.id !== taskId);
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  addTask(task: Task): void {
+    const tasks = this.tasksSubject.getValue();
+    task.id = tasks.length ? Math.max(...tasks.map(t => t.id)) + 1 : 1; // Generate a new ID
+    tasks.push(task);
     this.tasksSubject.next(tasks);
   }
 
-  toggleTaskCompletion(taskId: number): void {
-    const tasks = this.tasksSubject.value.map(task => 
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    );
-    this.tasksSubject.next(tasks);
+  updateTask(updatedTask: Task): void {
+    const tasks = this.tasksSubject.getValue();
+    const taskIndex = tasks.findIndex(task => task.id === updatedTask.id);
+    if (taskIndex !== -1) {
+      tasks[taskIndex] = updatedTask;
+      this.tasksSubject.next(tasks);
+    }
   }
 }
