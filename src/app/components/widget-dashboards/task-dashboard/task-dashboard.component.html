@@ -1,10 +1,5 @@
-<div class="my-tasks-container">
-    <h3>My Tasks</h3>
-    <div class="add-task">
-      <input type="text" [(ngModel)]="newTaskTitle" placeholder="New task" />
-      <input type="date" [(ngModel)]="newTaskDate" placeholder="Task date" />
-      <button (click)="addTask()">Add Task</button>
-    </div>
+<div class="task-dashboard-container">
+    <h3>Task dashboard</h3>
     <ul>
       <li *ngFor="let task of tasks" [class.completed]="task.completed">
         <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task)">

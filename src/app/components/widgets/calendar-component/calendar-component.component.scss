@@ -1,0 +1,65 @@
+.calendar-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100%; /* Ensure it takes the full height of the container */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+  
+  .calendar-container h3 {
+    margin-top: 0;
+  }
+  
+  .calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 10px;
+  }
+  
+  .calendar-day {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+    cursor: pointer; /* Add cursor pointer for clickable days */
+  }
+  
+  .calendar-day .date {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .calendar-day ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .calendar-day li {
+    padding: 2px 0;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-list h4 {
+    margin-top: 0;
+  }
+  
+  .task-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .task-list li {
+    padding: 2px 0;
+  }

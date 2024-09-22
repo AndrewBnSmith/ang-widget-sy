@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
+import { TaskService } from '../../../services/task.service';
 
 interface Task {
   id: number;
   title: string;
   completed: boolean;
+  date: string;
 }
 
 @Component({
@@ -16,31 +18,33 @@ interface Task {
   styleUrls: ['./my-tasks.component.scss']
 })
 export class MyTasksComponent {
-  tasks: Task[] = [
-    { id: 1, title: 'Task 1', completed: false },
-    { id: 2, title: 'Task 2', completed: true },
-    { id: 3, title: 'Task 3', completed: false },
-  ];
-
+  tasks: Task[] = [];
   newTaskTitle: string = '';
+  newTaskDate: string = '';
+
+  constructor(private taskService: TaskService) {
+    this.taskService.tasks$.subscribe(tasks => this.tasks = tasks);
+  }
 
   toggleTaskCompletion(task: Task): void {
-    task.completed = !task.completed;
+    this.taskService.toggleTaskCompletion(task.id);
   }
 
   addTask(): void {
-    if (this.newTaskTitle.trim()) {
+    if (this.newTaskTitle.trim() && this.newTaskDate.trim()) {
       const newTask: Task = {
         id: this.tasks.length + 1,
         title: this.newTaskTitle,
-        completed: false
+        completed: false,
+        date: this.newTaskDate
       };
-      this.tasks.push(newTask);
+      this.taskService.addTask(newTask);
       this.newTaskTitle = '';
+      this.newTaskDate = '';
     }
   }
 
   deleteTask(task: Task): void {
-    this.tasks = this.tasks.filter(t => t.id !== task.id);
+    this.taskService.deleteTask(task.id);
   }
 }

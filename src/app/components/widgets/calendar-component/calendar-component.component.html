@@ -1,0 +1,28 @@
+<div class="calendar-container">
+    <h3>Calendar</h3>
+    <div class="calendar-navigation">
+      <button (click)="previousYear()">Previous Year</button>
+      <button (click)="previousMonth()">Previous Month</button>
+      <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+      <button (click)="nextMonth()">Next Month</button>
+      <button (click)="nextYear()">Next Year</button>
+    </div>
+    <div class="calendar-grid">
+      <div *ngFor="let day of daysInMonth" class="calendar-day" (click)="onDayClick(day)">
+        <div class="date">{{ day }}</div>
+        <ul>
+          <li *ngFor="let task of getTasksForDate(day)">
+            {{ task.title }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="selectedTasks.length > 0" class="task-list">
+      <h4>Tasks for Selected Day</h4>
+      <ul>
+        <li *ngFor="let task of selectedTasks">
+          {{ task.title }}
+        </li>
+      </ul>
+    </div>
+  </div>

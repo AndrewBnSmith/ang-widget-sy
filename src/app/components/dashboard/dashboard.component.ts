@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FriendsListComponent } from '../friends-list/friends-list.component';
 import { WidgetComponent } from '../widget/widget.component';
+import { TaskDashboardComponent } from '../widget-dashboards/task-dashboard/task-dashboard.component';
+import { CalendarComponent } from '../widgets/calendar-component/calendar-component.component';
 import { MyTasksComponent } from '../widgets/my-tasks/my-tasks.component';
+
 
 interface Widget {
   id: number;
@@ -20,21 +23,25 @@ interface Widget {
     SidebarComponent,
     FriendsListComponent,
     WidgetComponent,
-    MyTasksComponent // Add MyTasksComponent to imports
+    MyTasksComponent,
+    CalendarComponent,
+    TaskDashboardComponent // Add TaskDetailComponent to imports
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   widgets: Widget[] = [
-    { id: 1, size: 'small', name: 'Widget 1', description: 'This is widget 1' },
-    { id: 2, size: 'medium', name: 'Widget 2', description: 'This is widget 2' },
-    { id: 3, size: 'large', name: 'Widget 3', description: 'This is widget 3' },
-    { id: 4, size: 'small', name: 'My Tasks', description: 'This is the tasks widget' } // Add My Tasks widget
+    { id: 1, size: 'medium', name: 'My Tasks', description: 'This is the tasks widget' },
+    { id: 2, size: 'medium', name: 'Calendar', description: 'This is the calendar widget' },
+    { id: 3, size: 'medium', name: 'Widget 1', description: 'This is widget 1' },
+    { id: 4, size: 'medium', name: 'Widget 2', description: 'This is widget 2' },
+    { id: 5, size: 'medium', name: 'Widget 3', description: 'This is widget 3' }
   ];
 
   placeholderIndex: number | null = null;
   draggedIndex: number | null = null;
+  detailedView: string | null = null; // Add property to track detailed view
 
   onDragStart(event: DragEvent, index: number) {
     this.draggedIndex = index;
@@ -64,5 +71,13 @@ export class DashboardComponent {
 
   changeSize(widget: Widget, size: 'small' | 'medium' | 'large') {
     widget.size = size;
+  }
+
+  showDetailedView(widgetName: string) {
+    this.detailedView = widgetName;
+  }
+
+  closeDetailedView() {
+    this.detailedView = null;
   }
 }

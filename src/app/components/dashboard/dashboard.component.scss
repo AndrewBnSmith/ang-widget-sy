@@ -32,36 +32,44 @@
     background-color: #fff; /* White background */
     box-sizing: border-box; /* Ensure padding and border are included in the width */
     overflow: hidden; /* Prevent content from overflowing */
+    position: relative; /* Ensure size selector is positioned correctly */
   }
   
   .widget-container.small {
-    width: calc(33.333% - 20px); /* Adjust width as needed, considering the gap */
-    height: 200px; /* Ensure consistent height */
+    width: calc(33.333% - 20px); 
+    height: 200px; 
   }
   
   .widget-container.medium {
-    width: calc(50% - 20px); /* Adjust width as needed, considering the gap */
-    height: 300px; /* Ensure consistent height */
+    width: calc(50% - 20px);
+    height: 300px; 
   }
   
   .widget-container.large {
-    width: calc(100% - 20px); /* Adjust width as needed, considering the gap */
-    height: 400px; /* Ensure consistent height */
+    width: calc(100% - 20px); 
+    height: 400px; 
   }
   
   .size-selector {
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
+    position: absolute; 
+    bottom: 10px; 
+    left: 10px; 
+    right: 10px; 
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 5px; 
+    border-radius: 5px; 
   }
   
   .widget-placeholder {
-    border: 2px dashed #007bff; /* Blue dashed border for the placeholder */
-    background-color: rgba(0, 123, 255, 0.1); /* Light blue background */
-    height: auto; /* Adjust height dynamically */
-    width: 100%; /* Full width */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-    transition: all 0.3s ease; /* Smooth transition for visual effect */
+    border: 2px dashed #007bff; 
+    background-color: rgba(0, 123, 255, 0.1); 
+    height: auto; 
+    width: 100%; 
+    box-sizing: border-box; 
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,12 +78,12 @@
   
   .widget-placeholder::before {
     content: 'Drop here';
-    color: #007bff; /* Blue text color */
+    color: #007bff; 
     font-size: 1.2em;
     font-weight: bold;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    pointer-events: none; /* Ensure the text doesn't interfere with drag events */
+    pointer-events: none; 
   }
