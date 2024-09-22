@@ -1,1 +1,18 @@
-<p>friends-list works!</p>
+<div class="friends-list-container">
+    <h2>Friends List</h2>
+    <button (click)="addFriend()">Add Friend</button>
+    <ul class="friends-list">
+      <li *ngFor="let friend of friends; let i = index" class="friend-item" [ngClass]="{'me': friend.isMe}">
+        <div class="friend-name" (click)="toggleDropdown(i)">
+          {{ friend.name }}
+          <span class="dropdown-icon">&#9662;</span>
+        </div>
+        <ul *ngIf="dropdownIndex === i" class="dropdown-menu">
+          <li (click)="viewProfile(friend)">Profile</li>
+          <li (click)="chatWithFriend(friend)">Chat</li>
+          <li (click)="friendSettings(friend)">Settings</li>
+          <li *ngIf="!friend.isMe" (click)="deleteFriend(i)">Delete</li>
+        </ul>
+      </li>
+    </ul>
+  </div>

@@ -23,3 +23,55 @@
     flex-wrap: wrap;
     gap: 10px; /* Adjust as needed */
   }
+  
+  .widget-container {
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside the container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #fff; /* White background */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  }
+  
+  .widget-container.small {
+    width: calc(33.333% - 20px); /* Adjust width as needed, considering the gap */
+  }
+  
+  .widget-container.medium {
+    width: calc(50% - 20px); /* Adjust width as needed, considering the gap */
+  }
+  
+  .widget-container.large {
+    width: calc(100% - 20px); /* Adjust width as needed, considering the gap */
+  }
+  
+  .size-selector {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .widget-placeholder {
+    border: 2px dashed #007bff; /* Blue dashed border for the placeholder */
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background */
+    height: auto; /* Adjust height dynamically */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    transition: all 0.3s ease; /* Smooth transition for visual effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .widget-placeholder::before {
+    content: 'Drop here';
+    color: #007bff; /* Blue text color */
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Ensure the text doesn't interfere with drag events */
+  }
