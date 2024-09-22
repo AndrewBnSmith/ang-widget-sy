@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FriendsListComponent } from './components/friends-list/friends-list.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     DashboardComponent,
     FriendsListComponent,
     TopNavComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    FormsModule // Add FormsModule to imports
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

@@ -31,18 +31,22 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     background-color: #fff; /* White background */
     box-sizing: border-box; /* Ensure padding and border are included in the width */
+    overflow: hidden; /* Prevent content from overflowing */
   }
   
   .widget-container.small {
     width: calc(33.333% - 20px); /* Adjust width as needed, considering the gap */
+    height: 200px; /* Ensure consistent height */
   }
   
   .widget-container.medium {
     width: calc(50% - 20px); /* Adjust width as needed, considering the gap */
+    height: 300px; /* Ensure consistent height */
   }
   
   .widget-container.large {
     width: calc(100% - 20px); /* Adjust width as needed, considering the gap */
+    height: 400px; /* Ensure consistent height */
   }
   
   .size-selector {

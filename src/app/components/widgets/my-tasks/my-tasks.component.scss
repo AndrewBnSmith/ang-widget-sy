@@ -1,0 +1,58 @@
+.my-tasks-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100%; /* Ensure it takes the full height of the container */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+  
+  .my-tasks-container h3 {
+    margin-top: 0;
+  }
+  
+  .my-tasks-container .add-task {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .my-tasks-container .add-task input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .my-tasks-container .add-task button {
+    padding: 5px 10px;
+  }
+  
+  .my-tasks-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .my-tasks-container li {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+  }
+  
+  .my-tasks-container li.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .my-tasks-container li button {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .my-tasks-container li button:hover {
+    background-color: #ff1a1a;
+  }

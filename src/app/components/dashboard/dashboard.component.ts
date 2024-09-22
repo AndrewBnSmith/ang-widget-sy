@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FriendsListComponent } from '../friends-list/friends-list.component';
 import { WidgetComponent } from '../widget/widget.component';
+import { MyTasksComponent } from '../widgets/my-tasks/my-tasks.component';
 
 interface Widget {
   id: number;
@@ -18,7 +19,8 @@ interface Widget {
     CommonModule,
     SidebarComponent,
     FriendsListComponent,
-    WidgetComponent
+    WidgetComponent,
+    MyTasksComponent // Add MyTasksComponent to imports
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
@@ -28,15 +30,11 @@ export class DashboardComponent {
     { id: 1, size: 'small', name: 'Widget 1', description: 'This is widget 1' },
     { id: 2, size: 'medium', name: 'Widget 2', description: 'This is widget 2' },
     { id: 3, size: 'large', name: 'Widget 3', description: 'This is widget 3' },
-    { id: 4, size: 'large', name: 'Widget 4', description: 'This is widget 4' },
+    { id: 4, size: 'small', name: 'My Tasks', description: 'This is the tasks widget' } // Add My Tasks widget
   ];
 
-  draggedIndex: number | null = null;
   placeholderIndex: number | null = null;
-
-  changeSize(widget: Widget, size: 'small' | 'medium' | 'large') {
-    widget.size = size;
-  }
+  draggedIndex: number | null = null;
 
   onDragStart(event: DragEvent, index: number) {
     this.draggedIndex = index;
@@ -45,24 +43,26 @@ export class DashboardComponent {
 
   onDragOver(event: DragEvent, index: number) {
     event.preventDefault();
-    if (this.placeholderIndex !== index) {
-      this.placeholderIndex = index;
-    }
+    this.placeholderIndex = index;
   }
 
   onDragLeave(event: DragEvent) {
+    event.preventDefault();
     this.placeholderIndex = null;
   }
 
   onDrop(event: DragEvent, index: number) {
     event.preventDefault();
-    const draggedIndex = this.draggedIndex;
-    if (draggedIndex !== null && draggedIndex !== index) {
-      const draggedWidget = this.widgets[draggedIndex];
-      this.widgets.splice(draggedIndex, 1);
+    if (this.draggedIndex !== null) {
+      const draggedWidget = this.widgets[this.draggedIndex];
+      this.widgets.splice(this.draggedIndex, 1);
       this.widgets.splice(index, 0, draggedWidget);
     }
-    this.draggedIndex = null;
     this.placeholderIndex = null;
+    this.draggedIndex = null;
+  }
+
+  changeSize(widget: Widget, size: 'small' | 'medium' | 'large') {
+    widget.size = size;
   }
 }
