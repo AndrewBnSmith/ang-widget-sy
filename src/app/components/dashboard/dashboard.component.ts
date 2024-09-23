@@ -9,6 +9,7 @@ import { MyTasksComponent } from '../widgets/my-tasks/my-tasks.component';
 import { CalendarComponent } from '../widgets/calendar-component/calendar-component.component';
 import { MyBudgetComponent } from '../my-budget/my-budget.component';
 
+
 interface Widget {
   id: number;
   size: 'small' | 'medium' | 'large';
@@ -37,15 +38,18 @@ export class DashboardComponent {
   widgets: Widget[] = [
     { id: 1, size: 'medium', name: 'My Tasks', description: 'This is the tasks widget' },
     { id: 2, size: 'medium', name: 'Calendar', description: 'This is the calendar widget' },
-    { id: 6, size: 'medium', name: 'My Budget', description: 'This is the budget widget' },
     { id: 3, size: 'medium', name: 'Widget 1', description: 'This is widget 1' },
     { id: 4, size: 'medium', name: 'Widget 2', description: 'This is widget 2' },
     { id: 5, size: 'medium', name: 'Widget 3', description: 'This is widget 3' },
+    { id: 6, size: 'medium', name: 'My Budget', description: 'This is the budget widget' } // Add budget widget
   ];
 
   placeholderIndex: number | null = null;
   draggedIndex: number | null = null;
   detailedView: string | null = null; // Add property to track detailed view
+
+  sidebarCollapsed = false; // State for sidebar collapse
+  friendsListCollapsed = false; // State for friends list collapse
 
   onDragStart(event: DragEvent, index: number) {
     this.draggedIndex = index;
@@ -83,5 +87,13 @@ export class DashboardComponent {
 
   closeDetailedView() {
     this.detailedView = null;
+  }
+
+  toggleSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
+
+  toggleFriendsList() {
+    this.friendsListCollapsed = !this.friendsListCollapsed;
   }
 }

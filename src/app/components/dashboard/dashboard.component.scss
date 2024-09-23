@@ -1,21 +1,27 @@
 .dashboard-container {
     display: flex;
     justify-content: space-between;
+    height: 100vh; /* Full height */
   }
   
-  .sidebar {
+  .sidebar, .friends-list {
     flex: 1;
     max-width: 200px; /* Adjust as needed */
+    transition: max-width 0.3s ease;
+  }
+  
+  .sidebar.collapsed, .friends-list.collapsed {
+    max-width: 50px; /* Adjust as needed */
   }
   
   .dashboard-content {
     flex: 2;
     padding: 0 20px; /* Adjust as needed */
+    transition: flex 0.3s ease;
   }
   
-  .friends-list {
-    flex: 1;
-    max-width: 200px; /* Adjust as needed */
+  .dashboard-content.expanded {
+    flex: 4; /* Adjust as needed */
   }
   
   .widgets {
