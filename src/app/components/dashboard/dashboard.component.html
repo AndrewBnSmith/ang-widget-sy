@@ -12,26 +12,12 @@
                  (dragover)="onDragOver($event, i)" 
                  (dragleave)="onDragLeave($event)" 
                  (drop)="onDrop($event, i)">
-              <!-- <div class="size-selector">
-                <label>
-                  <input type="radio" name="size-{{widget.id}}" value="small" (change)="changeSize(widget, 'small')" [checked]="widget.size === 'small'" />
-                  Small
-                </label>
-                <label>
-                  <input type="radio" name="size-{{widget.id}}" value="medium" (change)="changeSize(widget, 'medium')" [checked]="widget.size === 'medium'" />
-                  Medium
-                </label>
-                <label>
-                  <input type="radio" name="size-{{widget.id}}" value="large" (change)="changeSize(widget, 'large')" [checked]="widget.size === 'large'" />
-                  Large
-                </label>
-                <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> 
-              </div> -->
-              <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> <!-- Add enlarge button -->
+              <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar' || widget.name === 'My Budget'">Enlarge</button> <!-- Add enlarge button -->
               <ng-container [ngSwitch]="widget.name">
                 <app-widget *ngSwitchCase="'Widget 1'" [widget]="widget"></app-widget>
                 <app-widget *ngSwitchCase="'Widget 2'" [widget]="widget"></app-widget>
                 <app-widget *ngSwitchCase="'Widget 3'" [widget]="widget"></app-widget>
+                <app-my-budget *ngSwitchCase="'My Budget'"></app-my-budget>
                 <app-my-tasks *ngSwitchCase="'My Tasks'"></app-my-tasks>
                 <app-calendar *ngSwitchCase="'Calendar'"></app-calendar>
               </ng-container>
@@ -44,6 +30,7 @@
         <ng-container [ngSwitch]="detailedView">
           <app-task-dashboard *ngSwitchCase="'My Tasks'"></app-task-dashboard>
           <app-calendar-dashboard *ngSwitchCase="'Calendar'"></app-calendar-dashboard>
+          <app-my-budget *ngSwitchCase="'My Budget'"></app-my-budget> <!-- Add detailed view for MyBudgetComponent -->
         </ng-container>
         <button (click)="closeDetailedView()">Back to Dashboard</button>
       </ng-template>

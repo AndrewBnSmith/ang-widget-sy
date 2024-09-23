@@ -1,0 +1,38 @@
+<div class="budget-container">
+    <div class="budget-header">
+      <input [(ngModel)]="newBudgetItem.name" placeholder="Name" />
+      <input [(ngModel)]="newBudgetItem.price" type="number" placeholder="Price" />
+      <input [(ngModel)]="newBudgetItem.dueDate" type="date" />
+      <select [(ngModel)]="newBudgetItem.frequency">
+        <option value="monthly">Monthly</option>
+        <option value="yearly">Yearly</option>
+      </select>
+      <button (click)="addBudgetItem()">Add</button>
+    </div>
+    <div class="budget-list">
+      <div *ngFor="let item of budgetItems" class="budget-item">
+        <div class="budget-info">
+          <span class="budget-name">{{ item.name }}</span>
+          <span class="budget-price">${{ item.price }}</span>
+          <span class="budget-due-date">{{ item.dueDate }}</span>
+          <span class="budget-frequency">{{ item.frequency }}</span>
+          <button (click)="togglePaid(item)" [ngClass]="{ paid: item.paid }">{{ item.paid ? 'Paid' : 'Not Paid' }}</button>
+          <button (click)="toggleDetails(item.id)">More Info</button>
+        </div>
+        <div *ngIf="showDetails[item.id]" class="budget-details">
+          <p>{{ item.details }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="budget-metrics">
+      <div class="metrics-column">
+        <p>Monthly Cost: ${{ getMonthlyCost() }}</p>
+        <p>Yearly Cost: ${{ getYearlyCost() }}</p>
+        <p>Total Yearly Cost: ${{ getTotalYearlyCost() }}</p>
+      </div>
+      <div class="metrics-column">
+        <p>Total Paid: ${{ getTotalPaid() }}</p>
+        <p>Total Unpaid: ${{ getTotalUnpaid() }}</p>
+      </div>
+    </div>
+  </div>
