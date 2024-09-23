@@ -1,34 +1,26 @@
 <div class="tasks-container">
-    <h3>My Tasks</h3>
-    <ng-container *ngIf="selectedTask === null; else taskDetails">
-      <ul>
-        <li *ngFor="let task of tasks">
-          <span (click)="onTaskClick(task)">{{ task.title }}</span>
-          <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task)">
-          <button (click)="deleteTask(task); $event.stopPropagation();">Delete</button>
-          <button (click)="editTask(task); $event.stopPropagation();">Edit</button>
-        </li>
-      </ul>
-      <div class="add-task">
-        <input [(ngModel)]="newTask.title" placeholder="New Task Title">
-        <input [(ngModel)]="newTask.date" placeholder="New Task Date" type="date">
-        <button (click)="addTask()">Add Task</button>
-      </div>
-    </ng-container>
-    <ng-template #taskDetails>
-      <div class="task-details">
-        <h4>Task Details</h4>
-        <p>Title: {{ selectedTask?.title }}</p>
-        <p>Date: {{ selectedTask?.date }}</p>
-        <p>Completed: {{ selectedTask?.completed ? 'Yes' : 'No' }}</p>
-        <button (click)="backToTasks()">Back to Tasks</button>
-        <button *ngIf="!isEditing" (click)="editTask(selectedTask!)">Edit Task</button> <!-- Use type assertion -->
-        <div *ngIf="isEditing">
-          <input *ngIf="selectedTask" [(ngModel)]="selectedTask.title" placeholder="Task Title">
-          <input *ngIf="selectedTask" [(ngModel)]="selectedTask.date" placeholder="Task Date" type="date">
-          <button (click)="saveTask()">Save</button>
-          <button (click)="cancelEdit()">Cancel</button>
+    <div class="tasks-header">
+      <button (click)="setView('my')" [ngClass]="{ active: view === 'my' }">My Tasks ({{ taskCounts['personal'] || 0 }})</button>
+      <button (click)="setView('friends')" [ngClass]="{ active: view === 'friends' }">Friends' Tasks ({{ taskCounts['friends'] || 0 }})</button>
+      <button (click)="setView('all')" [ngClass]="{ active: view === 'all' }">All Tasks ({{ taskCounts['personal'] + taskCounts['friends'] || 0 }})</button>
+      <button (click)="setView('completed')" [ngClass]="{ active: view === 'completed' }">Completed ({{ taskCounts['completed'] || 0 }})</button>
+    </div>
+    <div class="tasks-list">
+      <div *ngFor="let task of filteredTasks" class="task-item">
+        <span>{{ task.title }}</span>
+        <div class="task-actions">
+          <button (click)="toggleTaskCompletion(task)" class="complete-btn">{{ task.completed ? 'Undo' : 'Complete' }}</button>
+          <button (click)="deleteTask(task)" class="delete-btn">Delete</button>
         </div>
       </div>
-    </ng-template>
+    </div>
+    <div class="add-task">
+      <input [(ngModel)]="newTask.title" placeholder="Task Title" />
+      <input [(ngModel)]="newTask.date" type="date" />
+      <select [(ngModel)]="newTask.type">
+        <option value="personal">Personal</option>
+        <option value="friends">Friends</option>
+      </select>
+      <button (click)="addTask()">Add Task</button>
+    </div>
   </div>

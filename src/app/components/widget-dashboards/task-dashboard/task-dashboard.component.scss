@@ -1,43 +1,163 @@
 .task-dashboard-container {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    height: 100%;
-    overflow-y: auto;
-  }
-  
-  .task-dashboard-container h3 {
-    margin-top: 0;
-  }
-  
-  .task-dashboard-container ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .task-dashboard-container li {
     display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-dashboard-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
+    margin-bottom: 1rem;
+  
+    input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 1rem;
+    }
+  
+    .task-filters {
+      display: flex;
+  
+      button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 0.5rem;
+  
+        &.active {
+          background-color: #0056b3;
+        }
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  
+    .task-sort {
+      display: flex;
+      align-items: center;
+  
+      label {
+        margin-right: 0.5rem;
+      }
+  
+      select {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
   }
   
-  .task-dashboard-container li.completed {
-    text-decoration: line-through;
-    color: #888;
+  .task-dashboard-body {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  
+    .task-list {
+      flex: 3;
+      overflow-y: auto;
+  
+      .task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+        .task-info {
+          h3 {
+            margin: 0;
+            font-size: 1.2rem;
+          }
+  
+          p {
+            margin: 0;
+            color: #666;
+          }
+        }
+  
+        .task-actions {
+          button {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+  
+            &.complete-btn {
+              background-color: #28a745;
+              color: white;
+  
+              &:hover {
+                background-color: #218838;
+              }
+            }
+  
+            &.delete-btn {
+              background-color: #dc3545;
+              color: white;
+  
+              &:hover {
+                background-color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .mini-calendar {
+      flex: 1;
+      margin-left: 1rem;
+    }
   }
   
-  .task-dashboard-container li button {
-    margin-left: auto;
-    padding: 5px 10px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
+  .add-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
-  .task-dashboard-container li button:hover {
-    background-color: #ff1a1a;
+    input,
+    select,
+    button {
+      margin-right: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
   }

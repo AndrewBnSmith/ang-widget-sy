@@ -12,7 +12,7 @@
                  (dragover)="onDragOver($event, i)" 
                  (dragleave)="onDragLeave($event)" 
                  (drop)="onDrop($event, i)">
-              <div class="size-selector">
+              <!-- <div class="size-selector">
                 <label>
                   <input type="radio" name="size-{{widget.id}}" value="small" (change)="changeSize(widget, 'small')" [checked]="widget.size === 'small'" />
                   Small
@@ -25,8 +25,9 @@
                   <input type="radio" name="size-{{widget.id}}" value="large" (change)="changeSize(widget, 'large')" [checked]="widget.size === 'large'" />
                   Large
                 </label>
-                <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> <!-- Add enlarge button -->
-              </div>
+                <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> 
+              </div> -->
+              <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar'">Enlarge</button> <!-- Add enlarge button -->
               <ng-container [ngSwitch]="widget.name">
                 <app-widget *ngSwitchCase="'Widget 1'" [widget]="widget"></app-widget>
                 <app-widget *ngSwitchCase="'Widget 2'" [widget]="widget"></app-widget>

@@ -1,65 +1,38 @@
 .calendar-container {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    height: 100%; /* Ensure it takes the full height of the container */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-  }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
   
-  .calendar-container h3 {
-    margin-top: 0;
-  }
+    .calendar-day {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s;
   
-  .calendar-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
+      &.today {
+        background-color: #add8e6; // Highlight today's date in light blue
+        color: #000;
+      }
   
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
-    gap: 10px;
-  }
+      &:hover {
+        background-color: #e0e0e0; // Hover color
+      }
   
-  .calendar-day {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #fff;
-    cursor: pointer; /* Add cursor pointer for clickable days */
-  }
+      .date {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
   
-  .calendar-day .date {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+      .task-count {
+        font-size: 0.8rem;
+        color: #666;
+      }
+    }
   
-  .calendar-day ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .calendar-day li {
-    padding: 2px 0;
-  }
-  
-  .task-list {
-    margin-top: 20px;
-  }
-  
-  .task-list h4 {
-    margin-top: 0;
-  }
-  
-  .task-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .task-list li {
-    padding: 2px 0;
+    .day-details {
+      margin-top: 1rem;
+    }
   }

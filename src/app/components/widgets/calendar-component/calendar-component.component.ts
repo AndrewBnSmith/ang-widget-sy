@@ -22,6 +22,9 @@ export class CalendarComponent {
   daysInMonth: number[] = [];
   selectedTasks: Task[] = [];
   selectedDay: number | null = null; // Add property to track the selected day
+  today: number = new Date().getDate(); // Add property to track today's date
+  currentMonthNumber: number = new Date().getMonth(); // Add property to track the current month
+  currentYear: number = new Date().getFullYear(); // Add property to track the current year
 
   constructor(private taskService: TaskService) {
     this.taskService.tasks$.subscribe((tasks: Task[]) => this.tasks = tasks);
@@ -48,5 +51,9 @@ export class CalendarComponent {
 
   backToCalendar(): void {
     this.selectedDay = null; // Reset the selected day to go back to the calendar view
+  }
+
+  isToday(day: number): boolean {
+    return day === this.today && this.currentMonth.getMonth() === this.currentMonthNumber && this.currentMonth.getFullYear() === this.currentYear;
   }
 }

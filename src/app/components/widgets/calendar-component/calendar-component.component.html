@@ -2,13 +2,12 @@
     <h3>Calendar</h3>
     <ng-container *ngIf="selectedDay === null; else dayDetails">
       <div class="calendar-grid">
-        <div *ngFor="let day of daysInMonth" class="calendar-day" (click)="onDayClick(day)">
+        <div *ngFor="let day of daysInMonth" 
+             class="calendar-day" 
+             [ngClass]="{ 'today': isToday(day) }"
+             (click)="onDayClick(day)">
           <div class="date">{{ day }}</div>
-          <ul>
-            <li *ngFor="let task of getTasksForDate(day)">
-              {{ task.title }}
-            </li>
-          </ul>
+          <div class="task-count">{{ getTasksForDate(day).length }} tasks</div>
         </div>
       </div>
     </ng-container>

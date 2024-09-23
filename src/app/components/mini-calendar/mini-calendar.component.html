@@ -1,0 +1,14 @@
+<div class="mini-calendar">
+    <div class="header">
+      <button (click)="prevMonth()">&#9664;</button>
+      <span>{{ currentDate | date: 'MMMM yyyy' }}</span>
+      <button (click)="nextMonth()">&#9654;</button>
+    </div>
+    <div class="days">
+      <div class="day" *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">{{ day }}</div>
+      <div class="empty" *ngFor="let _ of [].constructor(firstDayOfMonth)"></div>
+      <div class="day" *ngFor="let day of daysInMonth" [ngClass]="{ selected: day === selectedDate.getDate() }" (click)="selectDate(day)">
+        {{ day }}
+      </div>
+    </div>
+  </div>
