@@ -15,14 +15,14 @@
                  (dragover)="onDragOver($event, i)" 
                  (dragleave)="onDragLeave($event)" 
                  (drop)="onDrop($event, i)">
-              <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar' || widget.name === 'My Budget'">Enlarge</button> <!-- Add enlarge button -->
+              <button (click)="showDetailedView(widget.name)" *ngIf="widget.name === 'My Tasks' || widget.name === 'Calendar' || widget.name === 'My Budget'">Enlarge</button>
               <ng-container [ngSwitch]="widget.name">
                 <app-widget *ngSwitchCase="'Widget 1'" [widget]="widget"></app-widget>
                 <app-widget *ngSwitchCase="'Widget 2'" [widget]="widget"></app-widget>
                 <app-widget *ngSwitchCase="'Widget 3'" [widget]="widget"></app-widget>
                 <app-my-tasks *ngSwitchCase="'My Tasks'"></app-my-tasks>
                 <app-calendar *ngSwitchCase="'Calendar'"></app-calendar>
-                <app-my-budget *ngSwitchCase="'My Budget'"></app-my-budget> <!-- Add MyBudgetComponent -->
+                <app-my-budget *ngSwitchCase="'My Budget'"></app-my-budget> 
               </ng-container>
             </div>
           </ng-container>

@@ -1,90 +1,100 @@
-/* Sidebar Container */
-.side-nav {
-    position: relative;
-    height: 100vh;
-    padding: 10px;
-    transition: width 0.3s ease;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    overflow-y: auto;
-    width: 100px;
-  
-    &.collapsed {
-      width: 50px;
-    }
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    background-color: #161748; /* Purple Baseline */
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  /* Title Section */
-  .expanded-title {
+  .sidebar-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
   
-    h1 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
+    .logo {
+      display: flex;
+      align-items: center;
   
-    .expand-button {
-      border: none;
-      background: none;
-      cursor: pointer;
+      img {
+        height: 50px;
+        margin-right: 10px;
+      }
   
-      &:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-        padding: 2px;
-        border-radius: 5px;
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #39a0ca; /* Bluewater Lowlight */
       }
     }
   }
   
-  /* Navigation Links */
-  .side-nav a {
-    color: black; /* Set the text color to black */
-    text-decoration: none; /* Remove the underline */
-  }
-  
-  /* Navigation List */
-  .side-nav ul {
+  .nav-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin: 0;
+    flex: 1;
   
-    &::after {
-      content: "";
-      display: block;
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background-color: #2e2e48; /* Slightly lighter Purple */
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+  
+      &:hover {
+        background-color: #39a0ca; /* Bluewater Lowlight */
+        transform: translateY(-2px);
+      }
+  
+      .icon {
+        height: 24px;
+        margin-right: 10px;
+      }
+  
+      span {
+        font-size: 1rem;
+        color: #fff;
+      }
+    }
+  
+    hr {
+      border: 0;
       height: 1px;
-      background: #ccc;
-      margin: 10px 0;
+      background: #39a0ca; /* Bluewater Lowlight */
+      margin: 1rem 0;
     }
   }
   
-  /* Navigation Items */
-  .side-nav li {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
+  .add-widget,
+  .edit-layout {
     display: flex;
     align-items: center;
-    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: #2e2e48; /* Slightly lighter Purple */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
   
     &:hover {
-      transform: scale(1.02);
-      background-color: #90AEAD;
+      background-color: #39a0ca; /* Bluewater Lowlight */
+      transform: translateY(-2px);
     }
   
-    &.active {
-      background-color: #90AEAD;
-      color: white;
-    }
-  
-    img {
+    .icon {
+      height: 24px;
       margin-right: 10px;
     }
   
-    &:last-child {
-      order: 2;
+    span {
+      font-size: 1rem;
+      color: #fff;
     }
   }

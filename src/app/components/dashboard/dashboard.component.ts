@@ -36,12 +36,12 @@ interface Widget {
 })
 export class DashboardComponent {
   widgets: Widget[] = [
+    { id: 6, size: 'medium', name: 'My Budget', description: 'This is the budget widget' ,},
     { id: 1, size: 'medium', name: 'My Tasks', description: 'This is the tasks widget' },
     { id: 2, size: 'medium', name: 'Calendar', description: 'This is the calendar widget' },
     { id: 3, size: 'medium', name: 'Widget 1', description: 'This is widget 1' },
     { id: 4, size: 'medium', name: 'Widget 2', description: 'This is widget 2' },
     { id: 5, size: 'medium', name: 'Widget 3', description: 'This is widget 3' },
-    { id: 6, size: 'medium', name: 'My Budget', description: 'This is the budget widget' } // Add budget widget
   ];
 
   placeholderIndex: number | null = null;

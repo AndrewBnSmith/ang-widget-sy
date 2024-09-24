@@ -1,18 +1,33 @@
+<!-- src/app/components/widgets/my-tasks/my-tasks.component.html -->
 <div class="tasks-container">
     <div class="tasks-header">
-      <button (click)="setView('my')" [ngClass]="{ active: view === 'my' }">My Tasks ({{ taskCounts['personal'] || 0 }})</button>
-      <button (click)="setView('friends')" [ngClass]="{ active: view === 'friends' }">Friends' Tasks ({{ taskCounts['friends'] || 0 }})</button>
-      <button (click)="setView('all')" [ngClass]="{ active: view === 'all' }">All Tasks ({{ taskCounts['personal'] + taskCounts['friends'] || 0 }})</button>
-      <button (click)="setView('completed')" [ngClass]="{ active: view === 'completed' }">Completed ({{ taskCounts['completed'] || 0 }})</button>
+      <div class="task-type" [class.active]="view === 'my'" (click)="setView('my')">My Tasks</div>
+      <div class="task-type" [class.active]="view === 'friends'" (click)="setView('friends')">Friends' Tasks</div>
+      <div class="task-type" [class.active]="view === 'all'" (click)="setView('all')">All Tasks</div>
+      <div class="task-type" [class.active]="view === 'completed'" (click)="setView('completed')">Completed</div>
     </div>
     <div class="tasks-list">
       <div *ngFor="let task of filteredTasks" class="task-item">
-        <span>{{ task.title }}</span>
+        <div class="task-info">
+          <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task)" />
+          <span>{{ task.title }}</span>
+        </div>
         <div class="task-actions">
-          <button (click)="toggleTaskCompletion(task)" class="complete-btn">{{ task.completed ? 'Undo' : 'Complete' }}</button>
-          <button (click)="deleteTask(task)" class="delete-btn">Delete</button>
+          <button class="edit-btn" (click)="editTask(task)">✏️</button>
+          <button class="delete-btn" (click)="deleteTask(task)">🗑️</button>
         </div>
       </div>
+    </div>
+    <div *ngIf="isEditing" class="edit-task">
+      <h3>Edit Task</h3>
+      <input [(ngModel)]="selectedTask!.title" placeholder="Task Title" />
+      <input [(ngModel)]="selectedTask!.date" type="date" />
+      <select [(ngModel)]="selectedTask!.type">
+        <option value="personal">Personal</option>
+        <option value="friends">Friends</option>
+      </select>
+      <button (click)="saveTask()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
     </div>
     <div class="add-task">
       <input [(ngModel)]="newTask.title" placeholder="Task Title" />
